@@ -96,9 +96,9 @@ Expected output:
 ---
 
 ## Team Members
-- [Student 1] — [Wasiq Nabi Bakhsh]
-- [Student 2] — [NetID]
-- [Student 3] — [NetID]
-- [Student 4] — [NetID]
+- [Wasiq Nabi Bakhsh]
+- [Vishal Anand]
+- [Pankhudi Saraswat]
+- [Srivardhan Baba Vemula]
 
 **Demo Video:** [YouTube Link Here]
