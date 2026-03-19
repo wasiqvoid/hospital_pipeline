@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ERD — Hospital Management</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f8f9fa; display: flex; justify-content: center; padding: 20px; }
+  svg { background: white; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+  .table-header { fill: #1A6B72; }
+  .table-header-text { fill: white; font-weight: bold; font-size: 13px; }
+  .col-text { font-size: 11px; fill: #333; }
+  .pk-text  { font-size: 11px; fill: #1A6B72; font-weight: bold; }
+  .fk-text  { font-size: 11px; fill: #e67e22; }
+  .table-bg { fill: white; stroke: #1A6B72; stroke-width: 1.5; }
+  .alt-row  { fill: #E8F4F5; }
+  .rel-line { stroke: #1A6B72; stroke-width: 1.8; fill: none; }
+  .legend-text { font-size: 11px; fill: #555; }
+</style>
+</head>
+<body>
+<svg width="900" height="620" viewBox="0 0 900 620" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- Title -->
+  <text x="450" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#1A6B72">Hospital Management — Entity Relationship Diagram (Crow's Foot Notation)</text>
+
+  <!-- ── DOCTORS table (top-left) ── -->
+  <g transform="translate(30, 55)">
+    <rect class="table-bg" width="180" height="185" rx="6"/>
+    <rect class="table-header" x="0" y="0" width="180" height="28" rx="6"/>
+    <rect class="table-header" x="0" y="14" width="180" height="14"/>
+    <text class="table-header-text" x="90" y="19" text-anchor="middle">DOCTORS</text>
+    <!-- rows -->
+    <rect class="alt-row" x="1" y="28" width="178" height="18"/>
+    <text class="pk-text"  x="8"  y="41">🔑 doctor_id (PK)</text>
+    <text class="col-text" x="8"  y="59">first_name</text>
+    <rect class="alt-row" x="1" y="62" width="178" height="18"/>
+    <text class="col-text" x="8"  y="75">last_name</text>
+    <text class="col-text" x="8"  y="93">specialization</text>
+    <rect class="alt-row" x="1" y="96" width="178" height="18"/>
+    <text class="col-text" x="8"  y="109">phone_number</text>
+    <text class="col-text" x="8"  y="127">years_experience</text>
+    <rect class="alt-row" x="1" y="130" width="178" height="18"/>
+    <text class="col-text" x="8"  y="143">hospital_branch</text>
+    <text class="col-text" x="8"  y="161">email (UNIQUE)</text>
+    <rect class="alt-row" x="1" y="164" width="178" height="18"/>
+    <text class="col-text" x="8"  y="177">created_at</text>
+  </g>
+
+  <!-- ── PATIENTS table (top-right) ── -->
+  <g transform="translate(690, 55)">
+    <rect class="table-bg" width="190" height="220" rx="6"/>
+    <rect class="table-header" x="0" y="0" width="190" height="28" rx="6"/>
+    <rect class="table-header" x="0" y="14" width="190" height="14"/>
+    <text class="table-header-text" x="95" y="19" text-anchor="middle">PATIENTS</text>
+    <rect class="alt-row" x="1" y="28" width="188" height="18"/>
+    <text class="pk-text"  x="8"  y="41">🔑 patient_id (PK)</text>
+    <text class="col-text" x="8"  y="59">first_name</text>
+    <rect class="alt-row" x="1" y="62" width="188" height="18"/>
+    <text class="col-text" x="8"  y="75">last_name</text>
+    <text class="col-text" x="8"  y="93">gender</text>
+    <rect class="alt-row" x="1" y="96" width="188" height="18"/>
+    <text class="col-text" x="8"  y="109">date_of_birth</text>
+    <text class="col-text" x="8"  y="127">contact_number</text>
+    <rect class="alt-row" x="1" y="130" width="188" height="18"/>
+    <text class="col-text" x="8"  y="143">address</text>
+    <text class="col-text" x="8"  y="161">registration_date</text>
+    <rect class="alt-row" x="1" y="164" width="188" height="18"/>
+    <text class="col-text" x="8"  y="177">insurance_provider</text>
+    <text class="col-text" x="8"  y="195">insurance_number</text>
+    <rect class="alt-row" x="1" y="198" width="188" height="18"/>
+    <text class="col-text" x="8"  y="211">email (UNIQUE)</text>
+  </g>
+
+  <!-- ── APPOINTMENTS table (center) ── -->
+  <g transform="translate(340, 55)">
+    <rect class="table-bg" width="200" height="185" rx="6"/>
+    <rect class="table-header" x="0" y="0" width="200" height="28" rx="6"/>
+    <rect class="table-header" x="0" y="14" width="200" height="14"/>
+    <text class="table-header-text" x="100" y="19" text-anchor="middle">APPOINTMENTS</text>
+    <rect class="alt-row" x="1" y="28" width="198" height="18"/>
+    <text class="pk-text"  x="8"  y="41">🔑 appointment_id (PK)</text>
+    <text class="fk-text"  x="8"  y="59">🔗 patient_id (FK)</text>
+    <rect class="alt-row" x="1" y="62" width="198" height="18"/>
+    <text class="fk-text"  x="8"  y="75">🔗 doctor_id (FK)</text>
+    <text class="col-text" x="8"  y="93">appointment_date</text>
+    <rect class="alt-row" x="1" y="96" width="198" height="18"/>
+    <text class="col-text" x="8"  y="109">appointment_time</text>
+    <text class="col-text" x="8"  y="127">reason_for_visit</text>
+    <rect class="alt-row" x="1" y="130" width="198" height="18"/>
+    <text class="col-text" x="8"  y="143">status</text>
+    <text class="col-text" x="8"  y="161">created_at</text>
+  </g>
+
+  <!-- ── TREATMENTS table (bottom-left-center) ── -->
+  <g transform="translate(200, 360)">
+    <rect class="table-bg" width="195" height="168" rx="6"/>
+    <rect class="table-header" x="0" y="0" width="195" height="28" rx="6"/>
+    <rect class="table-header" x="0" y="14" width="195" height="14"/>
+    <text class="table-header-text" x="97" y="19" text-anchor="middle">TREATMENTS</text>
+    <rect class="alt-row" x="1" y="28" width="193" height="18"/>
+    <text class="pk-text"  x="8"  y="41">🔑 treatment_id (PK)</text>
+    <text class="fk-text"  x="8"  y="59">🔗 appointment_id (FK)</text>
+    <rect class="alt-row" x="1" y="62" width="193" height="18"/>
+    <text class="col-text" x="8"  y="75">treatment_type</text>
+    <text class="col-text" x="8"  y="93">description</text>
+    <rect class="alt-row" x="1" y="96" width="193" height="18"/>
+    <text class="col-text" x="8"  y="109">cost (DECIMAL)</text>
+    <text class="col-text" x="8"  y="127">treatment_date</text>
+    <rect class="alt-row" x="1" y="130" width="193" height="18"/>
+    <text class="col-text" x="8"  y="143">created_at</text>
+  </g>
+
+  <!-- ── BILLING table (bottom-right-center) ── -->
+  <g transform="translate(510, 360)">
+    <rect class="table-bg" width="195" height="185" rx="6"/>
+    <rect class="table-header" x="0" y="0" width="195" height="28" rx="6"/>
+    <rect class="table-header" x="0" y="14" width="195" height="14"/>
+    <text class="table-header-text" x="97" y="19" text-anchor="middle">BILLING</text>
+    <rect class="alt-row" x="1" y="28" width="193" height="18"/>
+    <text class="pk-text"  x="8"  y="41">🔑 bill_id (PK)</text>
+    <text class="fk-text"  x="8"  y="59">🔗 patient_id (FK)</text>
+    <rect class="alt-row" x="1" y="62" width="193" height="18"/>
+    <text class="fk-text"  x="8"  y="75">🔗 treatment_id (FK)</text>
+    <text class="col-text" x="8"  y="93">bill_date</text>
+    <rect class="alt-row" x="1" y="96" width="193" height="18"/>
+    <text class="col-text" x="8"  y="109">amount (DECIMAL)</text>
+    <text class="col-text" x="8"  y="127">payment_method</text>
+    <rect class="alt-row" x="1" y="130" width="193" height="18"/>
+    <text class="col-text" x="8"  y="143">payment_status</text>
+    <text class="col-text" x="8"  y="161">created_at</text>
+  </g>
+
+  <!-- ── RELATIONSHIPS ── -->
+
+  <!-- DOCTORS → APPOINTMENTS (one-to-many) -->
+  <!-- Line from doctors right edge (210,147) to appointments left (340,130) -->
+  <line class="rel-line" x1="210" y1="130" x2="340" y2="120"/>
+  <!-- Crow's foot at appointments end (many) -->
+  <line stroke="#1A6B72" stroke-width="1.8" x1="330" y1="113" x2="340" y2="120"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="330" y1="127" x2="340" y2="120"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="326" y1="120" x2="336" y2="120"/>
+  <!-- One marker at doctors end -->
+  <line stroke="#1A6B72" stroke-width="1.8" x1="210" y1="124" x2="210" y2="136"/>
+  <text x="245" y="112" font-size="10" fill="#1A6B72" font-weight="bold">1</text>
+  <text x="318" y="108" font-size="10" fill="#1A6B72" font-weight="bold">M</text>
+
+  <!-- PATIENTS → APPOINTMENTS (one-to-many) -->
+  <line class="rel-line" x1="690" y1="130" x2="540" y2="120"/>
+  <!-- Crow's foot at appointments end -->
+  <line stroke="#1A6B72" stroke-width="1.8" x1="548" y1="113" x2="540" y2="120"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="548" y1="127" x2="540" y2="120"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="544" y1="120" x2="554" y2="120"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="690" y1="124" x2="690" y2="136"/>
+  <text x="650" y="112" font-size="10" fill="#1A6B72" font-weight="bold">1</text>
+  <text x="554" y="108" font-size="10" fill="#1A6B72" font-weight="bold">M</text>
+
+  <!-- APPOINTMENTS → TREATMENTS (one-to-many) -->
+  <line class="rel-line" x1="430" y1="240" x2="360" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="352" y1="352" x2="360" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="368" y1="352" x2="360" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="356" y1="356" x2="366" y2="356"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="424" y1="234" x2="436" y2="234"/>
+  <text x="408" y="295" font-size="10" fill="#1A6B72" font-weight="bold">1</text>
+  <text x="355" y="348" font-size="10" fill="#1A6B72" font-weight="bold">M</text>
+
+  <!-- PATIENTS → BILLING (one-to-many) -->
+  <line class="rel-line" x1="735" y1="275" x2="650" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="642" y1="352" x2="650" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="658" y1="352" x2="650" y2="360"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="646" y1="356" x2="656" y2="356"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="729" y1="269" x2="741" y2="269"/>
+  <text x="710" y="305" font-size="10" fill="#1A6B72" font-weight="bold">1</text>
+  <text x="648" y="350" font-size="10" fill="#1A6B72" font-weight="bold">M</text>
+
+  <!-- TREATMENTS → BILLING (one-to-one) -->
+  <line class="rel-line" x1="395" y1="444" x2="510" y2="444"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="393" y1="438" x2="393" y2="450"/>
+  <line stroke="#1A6B72" stroke-width="1.8" x1="512" y1="438" x2="512" y2="450"/>
+  <text x="440" y="438" font-size="10" fill="#1A6B72" font-weight="bold">1 : 1</text>
+
+  <!-- ── LEGEND ── -->
+  <g transform="translate(30, 560)">
+    <rect x="0" y="0" width="840" height="45" rx="6" fill="#E8F4F5" stroke="#1A6B72" stroke-width="1"/>
+    <text x="10" y="16" class="legend-text" font-weight="bold" fill="#1A6B72">Legend:</text>
+    <text x="10" y="34" class="legend-text">🔑 PK = Primary Key</text>
+    <text x="140" y="34" class="legend-text">🔗 FK = Foreign Key</text>
+    <text x="270" y="34" class="legend-text">──&lt; = One-to-Many (Crow's Foot)</text>
+    <text x="470" y="34" class="legend-text">──| = One</text>
+    <text x="560" y="34" class="legend-text">DECIMAL used for cost/amount</text>
+    <text x="730" y="34" class="legend-text">TIMESTAMPTZ for created_at</text>
+  </g>
+
+</svg>
+</body>
+</html>
