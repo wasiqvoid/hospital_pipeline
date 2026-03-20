@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine, text
 from sqlalchemy.pool import NullPool
 
-# SETUP
 load_dotenv()
 
 
@@ -17,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 _data_dir_env = os.environ.get("DATA_DIR")
 DATA_DIR = (BASE_DIR / _data_dir_env) if _data_dir_env and not Path(_data_dir_env).is_absolute() else Path(_data_dir_env) if _data_dir_env else BASE_DIR / "data"
 if not DATABASE_URL:
-    sys.exit("❌ DATABASE_URL not set in .env")
+    sys.exit("DATABASE_URL not set in .env")
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger(__name__)
@@ -47,7 +46,6 @@ def load_table(df, table, pk, unique_cols=None):
     if not values:
         log.warning(f"{table}: no valid PK values, skipping delete")
     else:
-        # SAFE parameterized delete using IN with individual params
         with engine.begin() as conn:
             params = {f"id_{i}": v for i, v in enumerate(values)}
             placeholders = ", ".join(f":id_{i}" for i in range(len(values)))
@@ -119,8 +117,6 @@ def load_billing():
     df = clean_strings(df)
 
     df["amount"] = pd.to_numeric(df["amount"], errors="coerce").fillna(0)
-
-    # 🔥 FIXED — removed patient_id
     df = df.dropna(subset=["bill_id", "treatment_id"])
 
     load_table(df, "billing", "bill_id")
@@ -136,7 +132,7 @@ def main():
     load_treatments()
     load_billing()
 
-    log.info("✅ Done!")
+    log.info("Done!")
 
 
 if __name__ == "__main__":
