@@ -1,14 +1,3 @@
--- ============================================================
--- EAS 550 — Hospital Management Database
--- security.sql | Role-Based Access Control (RBAC)
--- Phase 1 Bonus — Step 1.4
--- ============================================================
-
--- Drop roles if they exist (idempotent)
--- ============================================================
--- security.sql (FIXED)
--- ============================================================
-
 DO $$
 BEGIN
     IF EXISTS (SELECT FROM pg_roles WHERE rolname = 'hospital_analyst') THEN
