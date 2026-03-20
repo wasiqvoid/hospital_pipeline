@@ -1,8 +1,3 @@
--- ============================================================
--- EAS 550 — Hospital Management Database
--- schema.sql | FINAL (A+ VERSION)
--- ============================================================
-
 DROP TABLE IF EXISTS billing      CASCADE;
 DROP TABLE IF EXISTS treatments   CASCADE;
 DROP TABLE IF EXISTS appointments CASCADE;
