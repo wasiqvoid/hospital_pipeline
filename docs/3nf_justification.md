@@ -41,36 +41,35 @@ In the raw data, `insurance_provider` and `insurance_number` were in the `appoin
 
 ### Third Normal Form (3NF)
 
-All tables are in 3NF:
+All tables in 3NF:
 - There are no transitive dependencies.
-- Non-key attributes depend only on the primary key and not on other non-key attributes.
+- Non key attribute depend only on primary key and not on other nonkey attribute.
 
-**Key design decisions:**
+**Key designn decision:**
 
 1. **Doctor information normalization**
-   - Only the `doctors` table contains information such as `specialization` and `hospital_branch`.
-   - Only the `appointments` table contains the `doctor_id` as a foreign key.
+   - Only the `doctors` table contains information like `specialization` and `hospital_branch`.
+   - Only the `appointments` table contain the `doctor_id` as a foreign key.
 
 2. **Patient information normalization**
-   - Patient information such as insurance details is stored in the `patients` table.
+   - Patient informations like insurance detail is stored in the `patients` table.
    - There is no duplication of information in the `appointments` table.
 3. **Treatment and billing information normalization**
    - Treatment information such as type, cost, and description of treatment is stored in the `treatments` table.
    - Payment information such as `payment_method` and `payment_status` is stored in the `billing` table.
 
 4. **Normalization of the billing table**
-   - There is no `patient_id` in the `billing` table.
+   - There is none `patient_id` in the `billing` table.
    - Patient information can be obtained from:
      **billing → treatment → appointment → patient**
 
-## 4. Many-to-Many Resolution
-There are no direct many-to-many relationships in the final schema.
-
-The **patients** and **doctors** table relationship is a natural many-to-many relationship because:
+## 4. Many-to-Many
+There are no direct many to many relationship in the final schema.
+**patients** and **doctors** table relationship is a natural manytomany relationships because:
 - A patient can visit many doctors.
 - A doctor can have many patients.
 - 
-This has been resolved by introducing the **appointments** table, which has created a one-to-many relationship between **patients** and **doctors**.
+This problem has been solved by introducing the **appointments** table which has created a one to many relationships between **patients** and **doctors**.
 
 ---
 
@@ -78,19 +77,19 @@ This has been resolved by introducing the **appointments** table, which has crea
 
 | Type of Anomaly | Prevention Strategy |
 |-----------------|---------------------|
-| **Insertion Anomaly** | Doctor and patient can be inserted independently without the need for an appointment. |
-| **Update Anomaly** | Patient and doctor information can be stored in a single table, thus preventing update anomalies. |
-| **Deletion Anomaly** | Remove a billing entry will not remove treatment information due to proper table separation. |
+| **Insertion Anomaly** | Doctor and patient can be inserted independently without the needing an appointment. |
+| **Update Anomaly** | Patient and doctor information can be stored in a single table thus preventing update anomalies. |
+| **Deletion Anomaly** | Remove a billing entry will not remove treatment information due to proper tables separation. |
 
 ## 6. Constraints Used
 
 | Constraint | Location | Purpose |
 |------------|----------|---------|
-| PRIMARY KEY | All tables | Ensures each record is uniquely identifiable |
+| PRIMARY KEYS | All tables | Ensure each record is uniquely identifiable |
 | FOREIGN KEY | appointments, treatments, billing | Maintains referential integrity |
 | NOT NULL | Required columns | Prevents incomplete or invalid data |
 | UNIQUE | email columns | Ensures no duplicate user accounts exist |
-| CHECK | status, payment_status, cost, amount | Validates data against domain constraints |
+| CHECK | status, payment_status, cost, amount | Validates data against domain constraints|
 | DECIMAL(10,2) | cost, amount | Ensures accurate financial calculations |
 | TIMESTAMPTZ | created_at | Supports timezone-aware timestamps |
 
