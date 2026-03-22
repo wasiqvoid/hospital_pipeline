@@ -14,8 +14,12 @@ hospital_pipeline/
 ├── ingestion/
 │   └── ingest_data.py      # Idempotent ELT pipeline
 ├── docs/
-│   └── 3nf_justification.md  # Schema design report
-│   └── ERD    
+│   ├── Usage of tools.txt
+│   ├── EAS_550_Group_4_Proposal.pdf #REPROT OF PROPOSAL
+│   ├── EAS_550_Group_4_Phase_1.pdf #REPORT OF PHASE 1
+│   ├── 3nf_justification.md  # Schema design report
+│   └──erd.html #web page
+│   └── ERD_Diargam.png              # ER diagram   
 ├── data/                   # CSV files (gitignored)
 ├── requirements.txt
 ├── .gitignore
