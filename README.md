@@ -18,7 +18,7 @@ hospital_pipeline/
 │   ├── EAS_550_Group_4_Proposal.pdf #REPROT OF PROPOSAL
 │   ├── EAS_550_Group_4_Phase_1.pdf #REPORT OF PHASE 1
 │   ├── 3nf_justification.md  # Schema design report
-│   ├──erd.html #web page
+│   ├── ERD.html #web page
 │   └── ERD_Diargam.png              # ER diagram   
 ├── data/                   # CSV files (gitignored)
 ├── requirements.txt
