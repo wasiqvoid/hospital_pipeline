@@ -1,0 +1,24 @@
+# AI Usage Disclosure
+## Scope of Use
+AI tools were used in a limited and supportive capacity for:
+- Gaining conceptual understanding of database normalization (1NF, 2NF, 3NF)
+- Understanding relationships within the dataset during initial exploration
+- Interpreting how entities such as patients, doctors, and appointments are logically connected
+- Assisting with general knowledge building and explanation of database design concepts
+- Debugging Python ingestion errors (environment setup, missing packages)
+- Improving clarity and structure of written explanations
+
+All entity identification, relationship modeling, normalization decisions, and implementation were independently developed and validated by the team.
+
+## Sample Prompts
+- "Explain transitive dependency in 3NF with example"
+- "How to identify entities and relationships from a dataset"
+- "How to connect PostgreSQL Neon with SQLAlchemy"
+- "Fix Python dotenv error in database connection"
+- "Why is patient_id removed from billing table?"
+- "syntax corrections for SQL, Python, and LaTeX formatting"
+- "Guidance on connecting PostgreSQL (Neon) with Python using SQLAlchemy"
+- "Assistance in configuring environment variables and database connection setup"
+
+## Statement of Academic Integrity
+This submission reflects our own understanding and implementation of relational database design, normalization, and data ingestion principles. AI tools were used only for conceptual understanding, learning support, debugging, and setup assistance, in full compliance with course policy.
