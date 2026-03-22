@@ -49,7 +49,7 @@ CREATE TABLE appointments (
 CREATE INDEX idx_appt_patient ON appointments(patient_id);
 CREATE INDEX idx_appt_doctor  ON appointments(doctor_id);
 
--- TREATMENTS (1:M with appointments)
+-- TREATMENTS
 CREATE TABLE treatments (
     treatment_id   VARCHAR(10) PRIMARY KEY,
     appointment_id VARCHAR(10) NOT NULL REFERENCES appointments(appointment_id) ON DELETE CASCADE,
@@ -62,7 +62,7 @@ CREATE TABLE treatments (
 
 CREATE INDEX idx_treat_appt ON treatments(appointment_id);
 
--- BILLING (FIXED — removed patient_id)
+-- BILLING 
 CREATE TABLE billing (
     bill_id        VARCHAR(10) PRIMARY KEY,
     treatment_id   VARCHAR(10) NOT NULL REFERENCES treatments(treatment_id) ON DELETE CASCADE,
