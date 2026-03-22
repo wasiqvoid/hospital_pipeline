@@ -15,6 +15,7 @@ hospital_pipeline/
 │   └── ingest_data.py      # Idempotent ELT pipeline
 ├── docs/
 │   └── 3nf_justification.md  # Schema design report
+│   └── ERD    
 ├── data/                   # CSV files (gitignored)
 ├── requirements.txt
 ├── .gitignore
@@ -101,4 +102,4 @@ Expected output:
 - [Pankhudi Saraswat]
 - [Srivardhan Baba Vemula]
 
-**Demo Video:** [YouTube Link Here]
+**Demo Video:** [https://www.youtube.com/watch?v=p1CfzJpFD18] 
