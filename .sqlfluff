@@ -1,0 +1,7 @@
+[sqlfluff]
+dialect = postgres
+templater = dbt
+exclude_rules = L034
+
+[sqlfluff:templater:dbt]
+project_dir = dbt/

@@ -1,0 +1,6 @@
+hospital:
+  target: dev
+  outputs:
+    dev:
+      type: postgres
+      url: "{{ env_var('DATABASE_URL') }}"
