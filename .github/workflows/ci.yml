@@ -24,8 +24,8 @@ jobs:
         with: { python-version: '3.11' }
       - run: pip install dbt-postgres
       - run: dbt deps
-        working-directory: dbt
+        working-directory: dbt_project
       - run: dbt run
-        working-directory: dbt
+        working-directory: dbt_project
       - run: dbt test
-        working-directory: dbt
+        working-directory: dbt_project
