@@ -221,4 +221,4 @@ Key design decisions:
 ---
 
 ## Demo Video
-[YouTube Link Here]
+[[YouTube Link Here](https://www.youtube.com/watch?v=p1CfzJpFD18)]
