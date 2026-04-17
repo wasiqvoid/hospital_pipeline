@@ -59,3 +59,28 @@ WITH monthly_stats AS (
     FROM billing b
     GROUP BY DATE_TRUNC('month', b.bill_date)
 )
+
+
+SELECT
+    bill_month,
+    total_bills,
+    unique_patients,
+    total_billed,
+    collected,
+    pending,
+    -- Month-over-month change
+    ROUND(
+        total_billed - LAG(total_billed) OVER (ORDER BY bill_month)
+    , 2)                                         AS mom_change,
+    -- Rolling 3-month average
+    ROUND(AVG(total_billed) OVER (
+        ORDER BY bill_month
+        ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
+    )::NUMERIC, 2)                               AS rolling_3mo_avg,
+    -- Cumulative revenue for the year
+    ROUND(SUM(total_billed) OVER (
+        ORDER BY bill_month
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    )::NUMERIC, 2)                               AS cumulative_revenue
+FROM monthly_stats
+ORDER BY bill_month;
