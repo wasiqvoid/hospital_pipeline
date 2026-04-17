@@ -26,7 +26,6 @@ SELECT
     completed_appointments,
     total_revenue,
     avg_revenue_per_visit,
-    -- Rank within specialization by revenue
     RANK() OVER (
         PARTITION BY specialization
         ORDER BY total_revenue DESC
