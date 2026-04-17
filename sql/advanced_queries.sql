@@ -31,7 +31,6 @@ SELECT
         PARTITION BY specialization
         ORDER BY total_revenue DESC
     )                                            AS revenue_rank_in_specialization,
-    -- Overall revenue percentile
     ROUND(
         100.0 * PERCENT_RANK() OVER (
             ORDER BY total_revenue
