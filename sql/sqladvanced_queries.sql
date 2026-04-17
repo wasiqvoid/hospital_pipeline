@@ -139,3 +139,42 @@ SELECT
     )::NUMERIC, 2)                               AS avg_cost_per_visit
 FROM patient_journey
 ORDER BY patient_id, visit_date;
+
+
+
+-- ─────────────────────────────────────────
+-- QUERY 4: No-Show Rate by Doctor & Month
+-- Uses: CTE + ROUND + conditional aggregation
+-- ─────────────────────────────────────────
+WITH monthly_noshow AS (
+    SELECT
+        d.first_name || ' ' || d.last_name      AS doctor_name,
+        d.specialization,
+        DATE_TRUNC('month', a.appointment_date::date)::date AS month,
+        COUNT(*)                                 AS total_appointments,
+        COUNT(CASE WHEN a.status = 'No-show'
+                   THEN 1 END)                   AS no_shows,
+        COUNT(CASE WHEN a.status = 'Completed'
+                   THEN 1 END)                   AS completed
+    FROM doctors        d
+    JOIN appointments   a ON d.doctor_id = a.doctor_id
+    GROUP BY d.first_name, d.last_name, d.specialization,
+             DATE_TRUNC('month', a.appointment_date::date)
+)
+
+SELECT
+    doctor_name,
+    specialization,
+    month,
+    total_appointments,
+    no_shows,
+    completed,
+    ROUND(100.0 * no_shows / NULLIF(total_appointments, 0), 1) AS no_show_rate_pct,
+    -- Rank months by no-show rate per doctor
+    RANK() OVER (
+        PARTITION BY doctor_name
+        ORDER BY no_shows DESC
+    )                                            AS worst_month_rank
+FROM monthly_noshow
+ORDER BY no_show_rate_pct DESC, month;
+
