@@ -38,3 +38,24 @@ SELECT
     )                                            AS revenue_percentile
 FROM doctor_revenue
 ORDER BY total_revenue DESC;
+
+
+
+-- ─────────────────────────────────────────
+-- QUERY 2: Monthly Revenue Trend
+-- with Rolling 3-Month Average
+-- Uses: CTE + LAG() + rolling window frame
+-- ─────────────────────────────────────────
+WITH monthly_stats AS (
+    SELECT
+        DATE_TRUNC('month', b.bill_date)::date   AS bill_month,
+        COUNT(DISTINCT b.bill_id)                AS total_bills,
+        COUNT(DISTINCT b.patient_id)             AS unique_patients,
+        ROUND(SUM(b.amount)::NUMERIC, 2)         AS total_billed,
+        ROUND(SUM(CASE WHEN b.payment_status = 'Paid'
+                       THEN b.amount ELSE 0 END)::NUMERIC, 2) AS collected,
+        ROUND(SUM(CASE WHEN b.payment_status = 'Pending'
+                       THEN b.amount ELSE 0 END)::NUMERIC, 2) AS pending
+    FROM billing b
+    GROUP BY DATE_TRUNC('month', b.bill_date)
+)
