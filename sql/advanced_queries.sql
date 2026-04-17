@@ -1,14 +1,4 @@
--- ============================================================
--- EAS 550 — Advanced Analytical Queries
--- advanced_queries.sql | Phase 2 — Step 2.3
--- All queries use CTEs and/or window functions as required.
--- ============================================================
 
--- ─────────────────────────────────────────
--- QUERY 1: Doctor Revenue Ranking
--- Which doctors generate the most revenue?
--- Uses: CTE + RANK() window function
--- ─────────────────────────────────────────
 WITH doctor_revenue AS (
     SELECT
         d.doctor_id,
