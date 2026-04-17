@@ -1,6 +1,3 @@
--- models/marts/dim_date.sql
--- Date dimension covering all appointment dates (2023).
-
 with date_spine as (
     select generate_series(
         '2023-01-01'::date,
