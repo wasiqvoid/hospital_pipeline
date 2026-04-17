@@ -84,3 +84,28 @@ SELECT
     )::NUMERIC, 2)                               AS cumulative_revenue
 FROM monthly_stats
 ORDER BY bill_month;
+
+
+-- ─────────────────────────────────────────
+-- QUERY 3: Patient Treatment History
+-- Full journey per patient with running total cost
+-- Uses: CTE + ROW_NUMBER() + SUM() running total
+-- ─────────────────────────────────────────
+WITH patient_journey AS (
+    SELECT
+        p.patient_id,
+        p.first_name || ' ' || p.last_name      AS patient_name,
+        p.insurance_provider,
+        a.appointment_id,
+        a.appointment_date::date                 AS visit_date,
+        a.reason_for_visit,
+        a.status                                 AS appointment_status,
+        t.treatment_type,
+        t.cost                                   AS treatment_cost,
+        b.payment_status,
+        b.payment_method
+    FROM patients       p
+    JOIN appointments   a ON p.patient_id    = a.patient_id
+    LEFT JOIN treatments t ON a.appointment_id = t.appointment_id
+    LEFT JOIN billing    b ON t.treatment_id  = b.treatment_id
+)
