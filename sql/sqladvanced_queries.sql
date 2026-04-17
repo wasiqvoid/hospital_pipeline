@@ -109,3 +109,33 @@ WITH patient_journey AS (
     LEFT JOIN treatments t ON a.appointment_id = t.appointment_id
     LEFT JOIN billing    b ON t.treatment_id  = b.treatment_id
 )
+
+
+SELECT
+    patient_id,
+    patient_name,
+    insurance_provider,
+    visit_date,
+    reason_for_visit,
+    appointment_status,
+    treatment_type,
+    treatment_cost,
+    payment_status,
+    payment_method,
+    -- Visit number for this patient
+    ROW_NUMBER() OVER (
+        PARTITION BY patient_id
+        ORDER BY visit_date
+    )                                            AS visit_number,
+    -- Running total spend per patient
+    ROUND(SUM(treatment_cost) OVER (
+        PARTITION BY patient_id
+        ORDER BY visit_date
+        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
+    )::NUMERIC, 2)                               AS running_total_cost,
+    -- Average cost across all their visits
+    ROUND(AVG(treatment_cost) OVER (
+        PARTITION BY patient_id
+    )::NUMERIC, 2)                               AS avg_cost_per_visit
+FROM patient_journey
+ORDER BY patient_id, visit_date;
