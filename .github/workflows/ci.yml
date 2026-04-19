@@ -17,12 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     needs: lint
     env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DB_HOST: ${{ secrets.DB_HOST }}
+      DB_USER: ${{ secrets.DB_USER }}
+      DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      DB_NAME: ${{ secrets.DB_NAME }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - run: pip install dbt-postgres
+      - run: mkdir -p ~/.dbt && cp dbt_project/profiles.yml ~/.dbt/profiles.yml
       - run: dbt deps
         working-directory: dbt_project
       - run: dbt run
