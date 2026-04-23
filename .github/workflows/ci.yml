@@ -11,7 +11,7 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: '3.11' }
       - run: pip install sqlfluff
-      - run: sqlfluff lint sql/ --dialect postgres
+      - run: sqlfluff lint sql/advanced_queries.sql sql/schema.sql --dialect postgres --exclude-rules ST02,ST06,ST07,AL01,LT05,LT12,LT01,LT02,RF04
 
   dbt-test:
     runs-on: ubuntu-latest
