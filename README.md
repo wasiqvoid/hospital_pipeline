@@ -7,6 +7,8 @@ A cloud-native, end-to-end data engineering pipeline built on Neon PostgreSQL, d
 ---
 
 ## 🚀 Live App
+
+![Dashboard Screenshot](docs/dashboard_screenshot.png)
 **Dashboard:** https://hospital-analytics-vo3t.onrender.com
 
 > ⚠️ Render free tier spins down after inactivity — wait up to 60 seconds for cold start.
