@@ -220,6 +220,9 @@ Key design decisions:
 
 ---
 
+## 🚀 Live App
+**Dashboard:** https://hospital-analytics-vo3t.onrender.com
+
 ## Demo Video
 [[YouTube Link Here](https://www.youtube.com/watch?v=p1CfzJpFD18)]
 # CI test
