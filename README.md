@@ -17,7 +17,8 @@ A cloud-native, end-to-end data engineering pipeline built on Neon PostgreSQL, d
 
 ## Demo Video
 [YouTube Demo](https://www.youtube.com/watch?v=p1CfzJpFD18)
-
+[YouTube Final Part 1](https://youtu.be/rHHf_WkXX9Q)
+[YouTube Final Part 2](https://youtu.be/pNBY4xuccos)
 ---
 
 ## Project Structure
